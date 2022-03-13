@@ -18,7 +18,7 @@ class DemandController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //Müşterilerin talep oluşturduğu api
     {
         $input = $request->all();
         $input['status'] = 'open';
@@ -47,7 +47,7 @@ class DemandController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)//Müşterilerin talep durumunu değiştirdiği api
     {
         $status = Demand::where('id', $id)
             ->update([
@@ -65,7 +65,7 @@ class DemandController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function demandShow(Request $request)
+    public function demandShow(Request $request)//Personellerin talepleri görüntülediği api
     {
         $query = Staff::where('id', $request->input('id'))->first();
         $demandList = Demand::where('department_id', $query->department_id)->get();
@@ -81,7 +81,7 @@ class DemandController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function demandResponse(Request $request)
+    public function demandResponse(Request $request)// Personellerin talep yanıtladığı api
     {
         $comments=Comment::where('status', 'open')
             ->create([

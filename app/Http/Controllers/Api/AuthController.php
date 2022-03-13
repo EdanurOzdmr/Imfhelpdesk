@@ -14,7 +14,7 @@ use App\Staff;
 class AuthController extends Controller
 {
 
-    public function userLogin(Request $request)
+    public function userLogin(Request $request) //Sisteme müşteri giriş api
     {
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -27,7 +27,7 @@ class AuthController extends Controller
         return response()->json(['error'=>'Unauthorized'], 401);
     }
 
-    public function userRegister(Request $request)
+    public function userRegister(Request $request) //Sisteme müşteri kayıt api
     {
 
         $validator = Validator::make($request->all(), [
@@ -49,7 +49,7 @@ class AuthController extends Controller
         return response()->json(['success'=>$success], 200);
     }
 
-    public function staffLogin(Request $request)
+    public function staffLogin(Request $request) //Sisteme personel giriş api
     {
 
         if (Auth::guard('staff')->attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -62,7 +62,7 @@ class AuthController extends Controller
         return response()->json(['error'=>'Unauthorized'], 401);
     }
 
-    public function staffRegister(Request $request)
+    public function staffRegister(Request $request) //Sisteme personel kayıt api
     {
 
         $validator = Validator::make($request->all(), [
