@@ -72,8 +72,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-                JSON_UNESCAPED_UNICODE);
+            return response()->json(['error'=>$validator->errors()], 401);
         }
 
         $staff = $request->all();
@@ -82,8 +81,7 @@ class AuthController extends Controller
         $success['token'] =  $staff->createToken('StaffToken')-> accessToken;
         $success['name'] =  $staff->name;
 
-        return response()->json(['success'=>$success], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-            JSON_UNESCAPED_UNICODE);
+        return response()->json(['success'=>$success], 200);
     }
 
 }
