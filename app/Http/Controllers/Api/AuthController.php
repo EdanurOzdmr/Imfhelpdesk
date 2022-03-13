@@ -37,8 +37,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-                JSON_UNESCAPED_UNICODE);
+            return response()->json(['error'=>$validator->errors()], 401);
         }
 
         $user = $request->all();
@@ -47,8 +46,7 @@ class AuthController extends Controller
         $success['token'] =  $user->createToken('StaffToken')-> accessToken;
         $success['name'] =  $user->name;
 
-        return response()->json(['success'=>$success], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-            JSON_UNESCAPED_UNICODE);
+        return response()->json(['success'=>$success], 200);
     }
 
     public function staffLogin(Request $request)
@@ -58,12 +56,10 @@ class AuthController extends Controller
             $staff = Auth::guard('staff')->user();
             $data['token'] = $staff->createToken('StaffToken')->accessToken;
             $data['name']  = $staff->name;
-            return response()->json($data, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-                JSON_UNESCAPED_UNICODE);
+            return response()->json($data, 200);
         }
 
-        return response()->json(['error'=>'Unauthorized'], 401, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-            JSON_UNESCAPED_UNICODE);
+        return response()->json(['error'=>'Unauthorized'], 401);
     }
 
     public function staffRegister(Request $request)
@@ -83,7 +79,7 @@ class AuthController extends Controller
         $staff = $request->all();
         $staff['password'] = Hash::make($staff['password']);
         $staff = Staff::create($staff);
-        $success['token'] =  $staff->createToken('MyTask')-> accessToken;
+        $success['token'] =  $staff->createToken('StaffToken')-> accessToken;
         $success['name'] =  $staff->name;
 
         return response()->json(['success'=>$success], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],

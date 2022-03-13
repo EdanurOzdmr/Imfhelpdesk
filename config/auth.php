@@ -42,13 +42,14 @@ return [
         ],
 
         'users' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
         ],
         'staff' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'staff',
+            'hash' => false,
         ],
     ],
 
