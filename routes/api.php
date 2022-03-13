@@ -30,6 +30,6 @@ Route::group([
 ], function () {
     Route::post('demand', 'Api\DemandController@store')->middleware('auth:users'); //Müşterilerin talep oluşturduğu api
     Route::put('demand-update/{id}', 'Api\DemandController@update')->middleware('auth:users');//Müşterilerin talep durumunu değiştirdiği api
-    Route::get('demand-show','Api\DemandController@demandShow')->middleware('auth:staff');
-    Route::post('demand-response','Api\DemandController@demandResponse')->middleware('auth:staff');;
+    Route::get('demand-show','Api\DemandController@demandShow')->middleware('auth:staff-api');
+    Route::post('demand-response','Api\DemandController@demandResponse')->middleware('auth:staff-api');;
 });

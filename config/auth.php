@@ -47,6 +47,10 @@ return [
             'hash' => false,
         ],
         'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
+        ],
+        'staff-api' => [
             'driver' => 'passport',
             'provider' => 'staff',
             'hash' => false,
